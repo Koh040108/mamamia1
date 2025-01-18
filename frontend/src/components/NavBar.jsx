@@ -58,7 +58,7 @@ const NavBar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/services"
+                            to="/Collection"
                             className={({ isActive }) =>
                                 isActive
                                     ? "border-b-2 border-white pb-1"
