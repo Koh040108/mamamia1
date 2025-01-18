@@ -1,20 +1,23 @@
-import axios from 'axios';
-import { createContext, useEffect, useState } from 'react';
+import { createContext } from "react";
+import { products } from "../assets/asssts";
 
 export const ShopContext = createContext();
 
-export const ShopProvider = ({ children }) => {
-    const [products, setProducts] = useState([]);
+const ShopContextProvider = (props) => {
+    const currency = "RM"; // Define constants
+    const delivery_fee = 10;
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/products')
-            .then((response) => setProducts(response.data))
-            .catch((error) => console.error('Error fetching products:', error));
-    }, []);
+    const value = {
+        products,
+        currency,
+        delivery_fee,
+    };
 
     return (
-        <ShopContext.Provider value={{ products }}>
-            {children}
+        <ShopContext.Provider value={value}>
+            {props.children}
         </ShopContext.Provider>
     );
 };
+
+export default ShopContextProvider;

@@ -58,14 +58,14 @@ const NavBar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/Collection"
+                            to="/collection"
                             className={({ isActive }) =>
                                 isActive
                                     ? "border-b-2 border-white pb-1"
                                     : "hover:underline hover:text-gray-300 transition-all duration-200"
                             }
                         >
-                            Services
+                            Collection
                         </NavLink>
                     </li>
                 </ul>
