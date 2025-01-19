@@ -1,35 +1,37 @@
-import React, { useContext } from 'react'
-import { ShopContext } from '../context/ShopContext'
-import Title from './Title';
+import React, { useContext } from 'react';
+import { ShopContext } from '../context/ShopContext';
 
 const CartTotal = () => {
+    const { getCartTotal, currency, delivery_fee } = useContext(ShopContext); // Use getCartTotal from context
 
-    const {currency,delivery_fee,getCartAmount} = useContext(ShopContext);
+    const cartTotal = getCartTotal(); // Calculate cart total
 
-  return (
-    <div className='w-full'>
-      <div className='text-2xl'>
-        <Title text1={'CART'} text2={'TOTALS'} />
-      </div>
-
-      <div className='flex flex-col gap-2 mt-2 text-sm'>
-            <div className='flex justify-between'>
-                <p>Subtotal</p>
-                <p>{currency} {getCartAmount()}.00</p>
+    return (
+        <div className="p-4 border rounded shadow-md text-gray-700">
+            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+            <div className="flex justify-between mb-2">
+                <span>Subtotal:</span>
+                <span>
+                    {currency}
+                    {cartTotal.toFixed(2)}
+                </span>
             </div>
-            <hr />
-            <div className='flex justify-between'>
-                <p>Shipping Fee</p>
-                <p>{currency} {delivery_fee}.00</p>
+            <div className="flex justify-between mb-2">
+                <span>Delivery Fee:</span>
+                <span>
+                    {currency}
+                    {delivery_fee.toFixed(2)}
+                </span>
             </div>
-            <hr />
-            <div className='flex justify-between'>
-                <b>Total</b>
-                <b>{currency} {getCartAmount() === 0 ? 0 : getCartAmount() + delivery_fee}.00</b>
+            <div className="flex justify-between font-bold">
+                <span>Total:</span>
+                <span>
+                    {currency}
+                    {(cartTotal + delivery_fee).toFixed(2)}
+                </span>
             </div>
-      </div>
-    </div>
-  )
-}
+        </div>
+    );
+};
 
-export default CartTotal
+export default CartTotal;

@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import {products} from "../assets/asssts"
 export const ShopContext = createContext();
+
 const ShopContextProvider = (props) => {
      const value = {
          const currency = ' RM';

@@ -1,58 +1,40 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Home from "./pages/Home";
-import About from "./pages/AboutUS";
-import Product from "./pages/Product";
-import Collection from "./pages/Collection";
-import ProductDetail from "./pages/ProductDetail"; // Import the product detail page
-import Footer from "./components/Footer"; // Import the Footer component
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toastify styles
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Collection from './pages/Collection'
+import About from './pages/AboutUs'
+import Product from './pages/Product'
+import Cart from './pages/Cart'
+import Login from './pages/Login'
+import PlaceOrder from './pages/PlaceOrder'
+import Orders from './pages/Orders'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import SearchBar from './components/SearchBar'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Verify from './pages/Verify'
 
 const App = () => {
     return (
-        <Router>
-            <div className="min-h-screen bg-gray-100 w-full flex flex-col">
-                {/* Navigation Bar */}
-                <NavBar />
+        <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+            <ToastContainer />
+            <Navbar />
+            <SearchBar />
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/collection' element={<Collection />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/product/:productId' element={<Product />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/place-order' element={<PlaceOrder />} />
+                <Route path='/orders' element={<Orders />} />
+                <Route path='/verify' element={<Verify />} />
+            </Routes>
+            <Footer />
+        </div>
+    )
+}
 
-                {/* ToastContainer for notifications */}
-                <ToastContainer
-                    position="top-right"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
-
-                {/* Main Content */}
-                <main className="container mx-auto px-4 py-6 w-full flex-1">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/collection" element={<Collection />} />
-                        <Route path="/product/:id" element={<ProductDetail />} /> {/* Set up the route */}
-                        <Route path="/collection" element={<Collection />}/>
-                        <Route path="/product/:id" element={<Product />}/>
-
-
-
-
-
-                    </Routes>
-                </main>
-
-                {/* Footer */}
-                <Footer />
-            </div>
-        </Router>
-    );
-};
-
-export default App;
+export default App

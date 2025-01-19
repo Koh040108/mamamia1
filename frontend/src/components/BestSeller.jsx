@@ -6,6 +6,15 @@ const BestSeller = () => {
     // Access the products from the ShopContext
     const { products } = useContext(ShopContext);
 
+    // Ensure products is defined and is an array
+    if (!products || !Array.isArray(products)) {
+        return (
+            <div className="text-center py-10">
+                <p>Loading best sellers...</p>
+            </div>
+        );
+    }
+
     // Filter best sellers
     const bestSellers = products.filter(product => product.bestseller);
 
@@ -19,7 +28,7 @@ const BestSeller = () => {
                     <ProductItem
                         key={item._id}
                         id={item._id}
-                        image={item.image[0]} // assuming image is an array
+                        image={item.image} // assuming image is an array
                         name={item.name}
                         price={item.price}
                     />

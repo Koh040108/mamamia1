@@ -1,11 +1,39 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
+import cartIcon from "../assets/cart_icon.png";
+import profileIcon from "../assets/profile_icon.png";
+import searchIcon from "../assets/search_icon.png"; // Your search icon
 
 const NavBar = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { setShowSearch, getCartCount } = useContext(ShopContext); // Use cart count from context
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
+    const { products, searchTerm, setSearchTerm, getCartCount } = useContext(ShopContext);
+    const [searchResults, setSearchResults] = useState([]);
+    const [isSearchVisible, setIsSearchVisible] = useState(false); // State to toggle search visibility
+    const navigate = useNavigate();
+
+    // Handle search input
+    const handleSearch = (e) => {
+        const term = e.target.value;
+        setSearchTerm(term); // Update the searchTerm state
+
+        if (term) {
+            const results = products.filter((product) =>
+                product.name.toLowerCase().includes(term.toLowerCase()) // Case-insensitive filtering
+            );
+            setSearchResults(results); // Set the filtered results
+        } else {
+            setSearchResults([]); // Reset results when search term is empty
+        }
+    };
+
+    // Handle clicking a search result
+    const handleResultClick = (productId) => {
+        setSearchResults([]); // Clear search results after click
+        setSearchTerm(""); // Reset the search term
+        navigate(`/product/${productId}`); // Navigate to the product details page
+    };
 
     return (
         <nav className="bg-gray-800 text-white w-full sticky top-0 z-50">
@@ -16,21 +44,45 @@ const NavBar = () => {
                 </div>
 
                 {/* Search Bar */}
-                <div className="flex items-center w-1/3">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="w-full px-4 py-2 rounded-l bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
-                    />
+                <div className="relative w-full sm:w-1/3 md:w-auto">
+                    {/* Search Icon (Visible on mobile only) */}
                     <button
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-r"
-                        onClick={() => setShowSearch(true)}
+                        onClick={() => setIsSearchVisible(!isSearchVisible)}
+                        className="sm:hidden absolute left-0 top-1/2 transform -translate-y-1/2"
                     >
-                        Search
+                        <img
+                            src={searchIcon} // Search icon
+                            alt="Search"
+                            className="w-6 h-6"
+                        />
                     </button>
+                    {/* Search Input */}
+                    {isSearchVisible && (
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={searchTerm} // Controlled input
+                            onChange={handleSearch} // Update search term
+                            className="w-full px-4 py-2 pl-10 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 sm:ml-2"
+                        />
+                    )}
+                    {/* Display search results */}
+                    {searchResults.length > 0 && (
+                        <div className="absolute z-10 w-full bg-white text-black mt-1 rounded shadow-lg max-h-64 overflow-y-auto">
+                            {searchResults.map((product) => (
+                                <div
+                                    key={product._id} // Use product._id as unique key
+                                    className="block px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                                    onClick={() => handleResultClick(product._id)} // Navigate to product details
+                                >
+                                    {product.name}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
-                {/* Navigation Links */}
+                {/* Navigation Links for Desktop */}
                 <ul className="hidden md:flex space-x-6">
                     <li>
                         <NavLink
@@ -70,25 +122,16 @@ const NavBar = () => {
                     </li>
                 </ul>
 
-                {/* Cart and Profile */}
-                <div className="relative flex items-center space-x-4">
+                {/* Cart and Profile for Desktop */}
+                <div className="relative flex items-center space-x-4 hidden md:flex">
                     {/* Cart */}
                     <div className="relative">
                         <NavLink to="/cart">
-                            <svg
-                                className="w-8 h-8 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M3 3h2l3 12h9l3-12h2"
-                                />
-                            </svg>
+                            <img
+                                src={cartIcon} // Use the local cart icon
+                                alt="Cart"
+                                className="w-8 h-8"
+                            />
                             {getCartCount() > 0 && (
                                 <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                                     {getCartCount()}
@@ -104,7 +147,7 @@ const NavBar = () => {
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
                         >
                             <img
-                                src="https://via.placeholder.com/32"
+                                src={profileIcon}
                                 alt="Profile"
                                 className="w-8 h-8 rounded-full"
                             />
@@ -113,7 +156,7 @@ const NavBar = () => {
                             <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-10">
                                 <ul className="py-2">
                                     <li className="px-4 py-2 hover:bg-gray-200">
-                                        <NavLink to="/profile" className="block text-gray-800">
+                                        <NavLink to="/login" className="block text-gray-800">
                                             View Profile
                                         </NavLink>
                                     </li>
@@ -142,7 +185,7 @@ const NavBar = () => {
                 {/* Mobile Menu Button */}
                 <button
                     className="md:hidden focus:outline-none"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} // Toggle mobile menu
                 >
                     <svg
                         className="w-6 h-6 text-white"
@@ -164,7 +207,7 @@ const NavBar = () => {
                             <NavLink
                                 to="/"
                                 className="block px-4 py-2 hover:bg-gray-700"
-                                onClick={() => setIsMobileMenuOpen(false)}
+                                onClick={() => setIsMobileMenuOpen(false)} // Close menu when item is clicked
                             >
                                 Home
                             </NavLink>
@@ -173,7 +216,7 @@ const NavBar = () => {
                             <NavLink
                                 to="/about"
                                 className="block px-4 py-2 hover:bg-gray-700"
-                                onClick={() => setIsMobileMenuOpen(false)}
+                                onClick={() => setIsMobileMenuOpen(false)} // Close menu when item is clicked
                             >
                                 About
                             </NavLink>
@@ -182,9 +225,32 @@ const NavBar = () => {
                             <NavLink
                                 to="/collection"
                                 className="block px-4 py-2 hover:bg-gray-700"
-                                onClick={() => setIsMobileMenuOpen(false)}
+                                onClick={() => setIsMobileMenuOpen(false)} // Close menu when item is clicked
                             >
                                 Collection
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/cart"
+                                className="block px-4 py-2 hover:bg-gray-700"
+                                onClick={() => setIsMobileMenuOpen(false)} // Close menu when item is clicked
+                            >
+                                Cart
+                                {getCartCount() > 0 && (
+                                    <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                        {getCartCount()}
+                                    </span>
+                                )}
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/login"
+                                className="block px-4 py-2 hover:bg-gray-700"
+                                onClick={() => setIsMobileMenuOpen(false)} // Close menu when item is clicked
+                            >
+                                Profile
                             </NavLink>
                         </li>
                     </ul>
