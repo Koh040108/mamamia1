@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 const NavBar = () => {
-    // State to manage profile dropdown visibility
     const [isProfileOpen, setIsProfileOpen] = useState(false);
-    // State to manage mobile menu visibility
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    // Example state for the number of items in the cart
-    const [cartItems, setCartItems] = useState(3);
+    const { setShowSearch, getCartCount } = useContext(ShopContext); // Use cart count from context
 
     return (
         <nav className="bg-gray-800 text-white w-full">
@@ -17,21 +15,23 @@ const NavBar = () => {
                     <NavLink to="/">MamaMia</NavLink>
                 </div>
 
-                {/* Search Bar (Visible on all screen sizes, moved to Navbar) */}
+                {/* Search Bar */}
                 <div className="flex items-center w-1/3">
                     <input
                         type="text"
                         placeholder="Search..."
                         className="w-full px-4 py-2 rounded-l bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
                     />
-                    <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-r">
+                    <button
+                        className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-r"
+                        onClick={() => setShowSearch(true)}
+                    >
                         Search
                     </button>
                 </div>
 
-                {/* Navigation Links for Desktop */}
+                {/* Navigation Links */}
                 <ul className="hidden md:flex space-x-6">
-                    {/* Each NavLink dynamically checks if the route is active */}
                     <li>
                         <NavLink
                             to="/"
@@ -70,9 +70,9 @@ const NavBar = () => {
                     </li>
                 </ul>
 
-                {/* Cart and Profile Section */}
+                {/* Cart and Profile */}
                 <div className="relative flex items-center space-x-4">
-                    {/* Cart Icon with Item Count */}
+                    {/* Cart */}
                     <div className="relative">
                         <NavLink to="/cart">
                             <svg
@@ -89,16 +89,15 @@ const NavBar = () => {
                                     d="M3 3h2l3 12h9l3-12h2"
                                 />
                             </svg>
-                            {/* Display item count if greater than 0 */}
-                            {cartItems > 0 && (
+                            {getCartCount() > 0 && (
                                 <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                                    {cartItems}
+                                    {getCartCount()}
                                 </span>
                             )}
                         </NavLink>
                     </div>
 
-                    {/* Profile Dropdown */}
+                    {/* Profile */}
                     <div className="relative">
                         <button
                             className="flex items-center space-x-2 bg-gray-700 px-4 py-2 rounded focus:outline-none hover:bg-gray-600"
@@ -110,26 +109,16 @@ const NavBar = () => {
                                 className="w-8 h-8 rounded-full"
                             />
                         </button>
-
-                        {/* Dropdown Menu */}
                         {isProfileOpen && (
                             <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg z-10">
                                 <ul className="py-2">
                                     <li className="px-4 py-2 hover:bg-gray-200">
-                                        <NavLink
-                                            to="/profile"
-                                            className="block text-gray-800 hover:text-gray-600"
-                                            onClick={() => setIsProfileOpen(false)}
-                                        >
+                                        <NavLink to="/profile" className="block text-gray-800">
                                             View Profile
                                         </NavLink>
                                     </li>
                                     <li className="px-4 py-2 hover:bg-gray-200">
-                                        <NavLink
-                                            to="/settings"
-                                            className="block text-gray-800 hover:text-gray-600"
-                                            onClick={() => setIsProfileOpen(false)}
-                                        >
+                                        <NavLink to="/settings" className="block text-gray-800">
                                             Settings
                                         </NavLink>
                                     </li>
@@ -162,12 +151,7 @@ const NavBar = () => {
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4 6h16M4 12h16m-7 6h7"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </button>
             </div>
@@ -175,7 +159,6 @@ const NavBar = () => {
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <div className="md:hidden bg-gray-800 text-white py-2">
-                    {/* Mobile Navigation Links */}
                     <ul className="space-y-4">
                         <li>
                             <NavLink
@@ -197,11 +180,11 @@ const NavBar = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="/services"
+                                to="/collection"
                                 className="block px-4 py-2 hover:bg-gray-700"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Services
+                                Collection
                             </NavLink>
                         </li>
                     </ul>
