@@ -47,7 +47,9 @@ const NavBar = () => {
                 <div className="relative w-full sm:w-1/3 md:w-auto">
                     {/* Search Icon (Visible on mobile only) */}
                     <button
-                        onClick={() => setIsSearchVisible(!isSearchVisible)}
+                        onClick={() => setIsSearchVisible(!isSearchVisible)
+
+                    }
                         className="sm:hidden absolute left-0 top-1/2 transform -translate-y-1/2"
                     >
                         <img
