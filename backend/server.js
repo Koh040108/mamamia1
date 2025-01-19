@@ -1,25 +1,49 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const productRoutes = require('./routes/productRoutes');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import 'dotenv/config';
+import connectDB from './config/mongodb.js';
+import connectCloudinary from './config/cloudinary.js';
+import userRouter from './routes/userRoute.js';
+import productRouter from './routes/productRoute.js';
+import cartRouter from './routes/cartRoute.js';
+import orderRouter from './routes/orderRoute.js';
 
+// App Config
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
+
+// Connect to DB and Cloudinary
+connectDB();
+connectCloudinary();
 
 // Middleware
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
-// Routes
-app.use('/api', productRoutes);
+// API Routes
+app.use('/api/user', userRouter);
+app.use('/api/product', productRouter);
+app.use('/api/cart', cartRouter);
+app.use('/api/order', orderRouter);
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log('MongoDB connection error: ', err));
-
-// Start server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+// Home Route
+app.get('/', (req, res) => {
+  res.send('API Working');
 });
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('Shutting down gracefully...');
+  await mongoose.disconnect();
+  console.log('Disconnected from MongoDB');
+  process.exit(0);
+});
+
+// Start Server
+app.listen(port, () => console.log(`Server started on PORT : ${port}`));
