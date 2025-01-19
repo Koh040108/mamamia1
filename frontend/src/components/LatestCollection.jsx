@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import Title from './Title';
 import ProductItem from './ProductItem';
+import "./Title.css";
 
 const LatestCollection = () => {
     const { products } = useContext(ShopContext); // Access products from context
@@ -30,10 +31,11 @@ const LatestCollection = () => {
     return (
         <div className="my-10">
             <div className="text-center py-8 text-3xl">
-                <Title text1="LATEST" text2="COLLECTIONS" />
-                <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.
-                </p>
+                <h1 className="text-shadow">-- LATEST COLLECTION  -- </h1>
+                    <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the.
+                    </p>
             </div>
 
             {/* Rendering Products */}

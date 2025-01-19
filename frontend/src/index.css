@@ -5,3 +5,48 @@
 ::-webkit-scrollbar{
     display: none;
 }
+/* index.css or App.css */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100%;
+    width: 100%;
+}
+
+.main-content {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    padding: 0; /* Remove or adjust padding */
+}
+footer {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    background-color: #333; /* Add background color for visibility */
+    color: white;
+    text-align: center;
+    padding: 20px 0; /* Adjust padding as needed */
+}
+
+.hero {
+    width: 100%; /* Ensure it takes up the full width */
+    max-width: 1200px; /* Set your maximum width (adjust as needed) */
+    margin: 0 auto; /* Center the hero section */
+    padding: 60px 20px; /* Adjust padding as needed */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Optional: Centers text inside hero */
+}

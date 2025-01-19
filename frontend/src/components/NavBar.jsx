@@ -36,7 +36,7 @@ const NavBar = () => {
     };
 
     return (
-        <nav className="bg-gray-800 text-white w-full sticky top-0 z-50">
+        <nav className="bg-[#C586A5] text-white w-full sticky top-0 z-50">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo Section */}
                 <div className="text-2xl font-bold">
@@ -49,7 +49,7 @@ const NavBar = () => {
                     <button
                         onClick={() => setIsSearchVisible(!isSearchVisible)
 
-                    }
+                        }
                         className="sm:hidden absolute left-0 top-1/2 transform -translate-y-1/2"
                     >
                         <img
@@ -70,7 +70,8 @@ const NavBar = () => {
                     )}
                     {/* Display search results */}
                     {searchResults.length > 0 && (
-                        <div className="absolute z-10 w-full bg-white text-black mt-1 rounded shadow-lg max-h-64 overflow-y-auto">
+                        <div
+                            className="absolute z-10 w-full bg-white text-black mt-1 rounded shadow-lg max-h-64 overflow-y-auto">
                             {searchResults.map((product) => (
                                 <div
                                     key={product._id} // Use product._id as unique key
@@ -89,7 +90,7 @@ const NavBar = () => {
                     <li>
                         <NavLink
                             to="/"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 isActive
                                     ? "border-b-2 border-white pb-1"
                                     : "hover:underline hover:text-gray-300 transition-all duration-200"
@@ -101,7 +102,7 @@ const NavBar = () => {
                     <li>
                         <NavLink
                             to="/about"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 isActive
                                     ? "border-b-2 border-white pb-1"
                                     : "hover:underline hover:text-gray-300 transition-all duration-200"
@@ -113,7 +114,7 @@ const NavBar = () => {
                     <li>
                         <NavLink
                             to="/collection"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 isActive
                                     ? "border-b-2 border-white pb-1"
                                     : "hover:underline hover:text-gray-300 transition-all duration-200"
@@ -135,7 +136,8 @@ const NavBar = () => {
                                 className="w-8 h-8"
                             />
                             {getCartCount() > 0 && (
-                                <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                <span
+                                    className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                                     {getCartCount()}
                                 </span>
                             )}
@@ -196,7 +198,7 @@ const NavBar = () => {
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7"/>
                     </svg>
                 </button>
             </div>
@@ -240,7 +242,8 @@ const NavBar = () => {
                             >
                                 Cart
                                 {getCartCount() > 0 && (
-                                    <span className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                    <span
+                                        className="absolute top-0 right-0 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                                         {getCartCount()}
                                     </span>
                                 )}
