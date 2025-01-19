@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import cartIcon from "../assets/cart_icon.png";
-import profileIcon from "../assets/profile_icon.png";
+import profileIcon from "../assets/profile.jpg";
 import searchIcon from "../assets/search_icon.png"; // Your search icon
 
 const NavBar = () => {
@@ -147,7 +147,7 @@ const NavBar = () => {
                     {/* Profile */}
                     <div className="relative">
                         <button
-                            className="flex items-center space-x-2 bg-gray-700 px-4 py-2 rounded focus:outline-none hover:bg-gray-600"
+                            className="flex items-center space-x-2 bg-[#C586A5] px-4 py-2 rounded focus:outline-none hover:bg-gray-600"
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
                         >
                             <img

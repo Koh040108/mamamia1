@@ -3,6 +3,8 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title"; // Adjust path
 import ProductItem from "../components/ProductItem"; // Adjust path
 import { assets } from '../assets/assets';
+import './Collection.css';
+
 
 
 const Collection = () => {
@@ -62,22 +64,24 @@ const Collection = () => {
                 >
                     FILTERS
                 </p>
-                <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"} sm:block`}>
-                    <p className="mb-3 text-sm font-medium">CATEGORIES</p>
-                    <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
+                <div className={`category-container ${showFilter ? "" : "hidden"} sm:block`}>
+                        <p className="mb-3 text-sm font-medium">CATEGORIES</p>
+                        <div className="flex flex-col gap-2 text-sm font-light text-gray-2000">
                         {/* Category Buttons */}
                         <button
                             className={`py-1 px-3 border border-gray-300 rounded ${
-                                category.includes("Totes") ? "bg-blue-500 text-white" : "bg-white text-blue-500"
+                                category.includes("Totes and Crochet") ? "bg-[#C586A5] text-white" // Selected state
+                                    : "bg-white text-[#C586A5]"
                             }`}
-                            value="Totes"
+                            value="Totes and Crochet"
                             onClick={toggleCategory}
                         >
-                            Totes
+                            Totes and Crochet
                         </button>
                         <button
                             className={`py-1 px-3 border border-gray-300 rounded ${
-                                category.includes("Soap") ? "bg-blue-500 text-white" : "bg-white text-blue-500"
+                                category.includes("Soap") ? "bg-[#C586A5] text-white" // Selected state
+                                    : "bg-white text-[#C586A5]"
                             }`}
                             value="Soap"
                             onClick={toggleCategory}
@@ -86,7 +90,8 @@ const Collection = () => {
                         </button>
                         <button
                             className={`py-1 px-3 border border-gray-300 rounded ${
-                                category.includes("Candle") ? "bg-blue-500 text-white" : "bg-white text-blue-500"
+                                category.includes("Candle") ? "bg-[#C586A5] text-white" // Selected state
+                                    : "bg-white text-[#C586A5]"
                             }`}
                             value="Candle"
                             onClick={toggleCategory}

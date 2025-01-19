@@ -11,9 +11,10 @@ import Orders from './pages/Orders'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Verify from './pages/Verify'
+import "./App.css"
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
             <Navbar/>
             <SearchBar/>
             <div className="main-content container">
+
                 <Routes>
                     <Route path='/' element={<Home/>}/>
                     <Route path='/collection' element={<Collection/>}/>

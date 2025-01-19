@@ -1,0 +1,52 @@
+/* Title Styling */
+.collection-title {
+    color: white; /* Make the collection title white */
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+.filter-button {
+    background-color: #ffc0cb; /* Pink background */
+    color: white; /* White text */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Hover effect */
+.filter-button:hover {
+    background-color: #ff69b4; /* Darker pink on hover */
+}
+
+/* Selected Button Styling */
+.filter-button.selected {
+    background-color: #ff1493; /* Darker pink for selected buttons */
+    color: white; /* Ensure text remains white */
+}
+
+/* Main container for the collection */
+.collection-container {
+    padding: 20px;
+    background-color: black; /* Black background */
+    min-height: 100vh;
+    color: white; /* Default text color to white */
+}
+
+/* Product grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Product item styling */
+.product-item {
+    text-align: center;
+}

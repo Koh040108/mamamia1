@@ -1,0 +1,10 @@
+/* Add this to your CSS file */
+.app-container {
+    background-color: azure; /* Change background to black */
+    color: #C586A5; /* Default text color to white */
+}
+
+.main-content h2, /* Assuming "LATEST COLLECTION" is an h2 */
+.main-content p { /* Assuming the text under it is in <p> */
+    color: #C586A5; /* Change text color to white */
+}
