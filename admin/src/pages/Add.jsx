@@ -15,7 +15,9 @@ const Add = ({token}) => {
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState("");
    const [category, setCategory] = useState("Candle");
+   const [subCategory, setSubCategory] = useState("Topwear");
    const [bestseller, setBestseller] = useState(false);
+   const [sizes, setSizes] = useState([]);
 
    const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -28,7 +30,9 @@ const Add = ({token}) => {
       formData.append("description",description)
       formData.append("price",price)
       formData.append("category",category)
+      formData.append("subCategory",subCategory)
       formData.append("bestseller",bestseller)
+      formData.append("sizes",JSON.stringify(sizes))
 
       image1 && formData.append("image1",image1)
       image2 && formData.append("image2",image2)
@@ -97,16 +101,32 @@ const Add = ({token}) => {
               <p className='mb-2'>Product category</p>
               <select onChange={(e) => setCategory(e.target.value)} className='w-full px-3 py-2'>
                   <option value="Candle">Candle</option>
+                  <option value="Totes and Crochet">Totes</option>
                   <option value="Soap">Soap</option>
-                  <option value="Totes">Totes</option>
               </select>
             </div>
-
             <div>
               <p className='mb-2'>Product Price</p>
               <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='25' />
             </div>
 
+        </div>
+
+        <div>
+          <p className='mb-2'>Product Sizes</p>
+          <div className='flex gap-3'>
+            <div onClick={()=>setSizes(prev => prev.includes("S") ? prev.filter( item => item !== "S") : [...prev,"S"])}>
+              <p className={`${sizes.includes("S") ? "bg-pink-100" : "bg-slate-200" } px-3 py-1 cursor-pointer`}>S</p>
+            </div>
+            
+            <div onClick={()=>setSizes(prev => prev.includes("M") ? prev.filter( item => item !== "M") : [...prev,"M"])}>
+              <p className={`${sizes.includes("M") ? "bg-pink-100" : "bg-slate-200" } px-3 py-1 cursor-pointer`}>M</p>
+            </div>
+
+            <div onClick={()=>setSizes(prev => prev.includes("L") ? prev.filter( item => item !== "L") : [...prev,"L"])}>
+              <p className={`${sizes.includes("L") ? "bg-pink-100" : "bg-slate-200" } px-3 py-1 cursor-pointer`}>L</p>
+            </div>
+          </div>
         </div>
 
         <div className='flex gap-2 mt-2'>
