@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { ShopContext } from '../context/ShopContext';
 
 const CartTotal = () => {
-    const { getCartTotal, currency, delivery_fee } = useContext(ShopContext); // Use getCartTotal from context
+    const { getCartAmount, currency, delivery_fee } = useContext(ShopContext); // Use getCartTotal from context
 
-    const cartTotal = getCartTotal(); // Calculate cart total
+    const cartTotal = getCartAmount(); // Calculate cart total
+
+    // Safeguard against NaN values
+    const displayTotal = isNaN(cartTotal) ? 0 : cartTotal;
 
     return (
         <div className="p-4 border rounded shadow-md text-gray-700">
