@@ -8,7 +8,7 @@ const NavBar = () => {
     const { setShowSearch, getCartCount } = useContext(ShopContext); // Use cart count from context
 
     return (
-        <nav className="bg-gray-800 text-white w-full">
+        <nav className="bg-gray-800 text-white w-full sticky top-0 z-50">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo Section */}
                 <div className="text-2xl font-bold">

@@ -1,0 +1,14 @@
+/* Define the fade-in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px); /* Optional: to add some movement */
+    animation: fadeInScroll 1s ease-out forwards;
+}
+
+/* Keyframes for the fade-in effect */
+@keyframes fadeInScroll {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Moves the element up */
+    }
+}
