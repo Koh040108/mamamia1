@@ -5,7 +5,7 @@ import cartIcon from "../assets/cart_icon.png";
 import profileIcon from "../assets/profile.jpg";
 import searchIcon from "../assets/search_icon.png"; // Your search icon
 
-const NavBar = () => {
+const Navbar = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
     const { products, searchTerm, setSearchTerm, getCartCount } = useContext(ShopContext);
