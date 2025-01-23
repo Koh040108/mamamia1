@@ -31,10 +31,9 @@ const LatestCollection = () => {
     return (
         <div className="my-10">
             <div className="text-center py-8 text-3xl">
-                <h1 className="text-shadow">-- LATEST COLLECTION  -- </h1>
+                <h1 className="text-shadow"> Latest Collection   </h1>
                     <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the.
+                        Discover our latest product here
                     </p>
             </div>
 
