@@ -164,11 +164,6 @@ const Navbar = () => {
                                             View Profile
                                         </NavLink>
                                     </li>
-                                    <li className="px-4 py-2 hover:bg-gray-200">
-                                        <NavLink to="/settings" className="block text-gray-800">
-                                            Settings
-                                        </NavLink>
-                                    </li>
                                     <li className="px-4 py-2 hover:bg-gray-200 border-t">
                                         <button
                                             className="w-full text-left text-gray-800 hover:text-red-600"
