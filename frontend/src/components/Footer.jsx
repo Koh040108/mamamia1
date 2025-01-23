@@ -68,7 +68,6 @@ const Footer = () => {
                         </div>
                     </div>
 
-
                     {/* Contact Information Section */}
                     <div>
                         <h5 className="text-lg font-semibold mb-4">Contact Information</h5>
