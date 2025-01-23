@@ -7,13 +7,13 @@ import muzan from '../assets/muzan.jpg'
 const AboutUs = () => {
     return (
         <div className="about-us-container">
-            <header className="text-center py-12 bg-gray-700 text-white">
+            <header className="text-center py-12 text-white" style={{backgroundColor: "#C586A5"}}>
                 <h1 className="text-4xl font-bold">About Us</h1>
-                <p className="text-xl mt-2">Learn more about our mission, vision, and team</p>
+                <p className="text-xl mt-2" style={{color: "white"}}>Learn more about our mission, vision, and team</p>
             </header>
 
             <section className="container mx-auto my-10 px-6 md:px-12">
-                <div className="flex flex-wrap">
+            <div className="flex flex-wrap">
                     <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
                         <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
                         <p className="text-lg text-gray-700">
@@ -41,7 +41,7 @@ const AboutUs = () => {
                                 alt="Team Member 1"
                             />
                             <div className="p-4">
-                                <h5 className="text-xl font-semibold">John Doe</h5>
+                                <h5 className="text-xl font-semibold">Kean Hoe</h5>
                                 <p className="text-gray-600">Founder & CEO</p>
                             </div>
                         </div>
@@ -54,7 +54,7 @@ const AboutUs = () => {
                                 alt="Team Member 2"
                             />
                             <div className="p-4">
-                                <h5 className="text-xl font-semibold">Jane Smith</h5>
+                                <h5 className="text-xl font-semibold">Santthos</h5>
                                 <p className="text-gray-600">Marketing Director</p>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ const AboutUs = () => {
                                 alt="Team Member 3"
                             />
                             <div className="p-4">
-                                <h5 className="text-xl font-semibold">Alex Lee</h5>
+                                <h5 className="text-xl font-semibold">Muzan</h5>
                                 <p className="text-gray-600">Content Manager</p>
                             </div>
                         </div>
@@ -80,8 +80,8 @@ const AboutUs = () => {
                                 alt="Team Member 4"
                             />
                             <div className="p-4">
-                                <h5 className="text-xl font-semibold">Muzan Kibutsuji</h5>
-                                <p className="text-gray-600">Head Chef</p>
+                                <h5 className="text-xl font-semibold">Aveenath</h5>
+                                <p className="text-gray-600">Web Designer</p>
                             </div>
                         </div>
                     </div>

@@ -9,9 +9,10 @@ const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
                     {/* About Section */}
                     <div>
-                        <h5 className="text-lg font-semibold mb-4">About Mamma Mia</h5>
+                        <h5 className="text-lg font-semibold mb-4">About MamaMia</h5>
                         <p className="text-gray-400">
-                            Discover the best in fashion, lifestyle, and inspiration. Shop the latest trends and join the Mamma Mia community for style, elegance, and everything in between.
+                            Discover the best in fashion, lifestyle, and inspiration. Shop the latest trends and join
+                            the Mamaia community for style, elegance, and everything in between.
                         </p>
                     </div>
 
@@ -21,44 +22,67 @@ const Footer = () => {
                         <ul className="space-y-2">
                             <li><Link to="/about" className="text-gray-400 hover:text-gray-300">About Us</Link></li>
                             <li><Link to="/contact" className="text-gray-400 hover:text-gray-300">Contact</Link></li>
-                            <li><Link to="/privacy-policy" className="text-gray-400 hover:text-gray-300">Privacy Policy</Link></li>
-                            <li><Link to="/terms-of-service" className="text-gray-400 hover:text-gray-300">Terms of Service</Link></li>
+                            <li><Link to="/privacy-policy" className="text-gray-400 hover:text-gray-300">Privacy
+                                Policy</Link></li>
+                            <li><Link to="/terms-of-service" className="text-gray-400 hover:text-gray-300">Terms of
+                                Service</Link></li>
                         </ul>
                     </div>
 
                     {/* Follow Us Section */}
                     <div>
-                        <h5 className="text-lg font-semibold mb-4">Follow Us</h5>
-                        <div className="flex space-x-4">
-                            <a href="https://facebook.com" className="text-gray-400 hover:text-gray-300" target="_blank" rel="noopener noreferrer">
-                                <FaFacebookF className="text-xl" />
+                        <h5 className="text-lg font-semibold mb-4 text-center">Follow Us</h5>
+                        <div className="flex justify-center space-x-4">
+                            <a
+                                href="https://facebook.com"
+                                className="text-gray-400 hover:text-gray-300"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaFacebookF className="text-xl"/>
                             </a>
-                            <a href="https://instagram.com" className="text-gray-400 hover:text-gray-300" target="_blank" rel="noopener noreferrer">
-                                <FaInstagram className="text-xl" />
+                            <a
+                                href="https://instagram.com"
+                                className="text-gray-400 hover:text-gray-300"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaInstagram className="text-xl"/>
                             </a>
-                            <a href="https://twitter.com" className="text-gray-400 hover:text-gray-300" target="_blank" rel="noopener noreferrer">
-                                <FaTwitter className="text-xl" />
+                            <a
+                                href="https://twitter.com"
+                                className="text-gray-400 hover:text-gray-300"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaTwitter className="text-xl"/>
                             </a>
-                            <a href="https://pinterest.com" className="text-gray-400 hover:text-gray-300" target="_blank" rel="noopener noreferrer">
-                                <FaPinterest className="text-xl" />
+                            <a
+                                href="https://pinterest.com"
+                                className="text-gray-400 hover:text-gray-300"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaPinterest className="text-xl"/>
                             </a>
                         </div>
                     </div>
+
 
                     {/* Contact Information Section */}
                     <div>
                         <h5 className="text-lg font-semibold mb-4">Contact Information</h5>
                         <ul className="space-y-2">
-                            <li className="text-gray-400">Phone: +1 (800) 123-4567</li>
-                            <li className="text-gray-400">Email: support@mammamia.com</li>
-                            <li className="text-gray-400">Address: 123 Fashion Ave, Suite 456, New York, NY 10001</li>
+                            <li className="text-gray-400">Phone: 04-456 98347</li>
+                            <li className="text-gray-400">Email: support@mamamia.com</li>
+                            <li className="text-gray-400">University Sains Malaysia</li>
                         </ul>
                     </div>
                 </div>
 
                 {/* Footer Bottom */}
                 <div className="border-t border-gray-700 pt-6 mt-8 text-center">
-                    <small className="text-gray-400">&copy; 2025 Mamma Mia. All rights reserved.</small>
+                    <small className="text-gray-400">&copy; 2025 MamaMia. All rights reserved.</small>
                 </div>
             </div>
         </footer>
