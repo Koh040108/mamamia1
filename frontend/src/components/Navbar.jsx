@@ -173,7 +173,16 @@ const Navbar = () => {
                                         <button
                                             className="w-full text-left text-gray-800 hover:text-red-600"
                                             onClick={() => {
-                                                setIsProfileOpen(false);
+                                                // Clear authentication token
+                                                localStorage.removeItem("token");
+
+                                                // Reset any related state if needed
+                                                setIsProfileOpen(false); // Close profile dropdown
+
+                                                // Optionally, redirect to login or home page
+                                                navigate("/login");
+
+                                                // Provide feedback to the user
                                                 console.log("Logged out");
                                             }}
                                         >
