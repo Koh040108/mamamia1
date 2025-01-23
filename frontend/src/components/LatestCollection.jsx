@@ -33,8 +33,7 @@ const LatestCollection = () => {
             <div className="text-center py-8 text-3xl">
                 <h1 className="text-shadow">-- LATEST COLLECTION  -- </h1>
                     <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the.
+                        Explore our latest collection, featuring fresh designs and trendy styles perfect for any occasion. Don’t miss out—Shop now and stay ahead of the trends!
                     </p>
             </div>
 

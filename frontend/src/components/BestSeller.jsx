@@ -22,6 +22,9 @@ const BestSeller = () => {
         <div className="my-10">
             <div className="text-center py-8 text-3xl">
                 <h2 className="text-gray-700">Best Sellers</h2>
+                    <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
+                        Shop our best sellers—<></>op-rated and most-loved items, chosen by you. Find the perfect picks everyone’s raving about!
+                    </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {bestSellers.map((item) => (
