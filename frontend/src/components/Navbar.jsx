@@ -6,33 +6,43 @@ import profileIcon from "../assets/profile.jpg";
 import searchIcon from "../assets/search_icon.png"; // Your search icon
 
 const Navbar = () => {
+    const {
+        products,
+        search,
+        setSearch,
+        getCartCount,
+        token,
+        setToken,
+        navigate,
+    } = useContext(ShopContext);
+
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
-    const { products, searchTerm, setSearchTerm, getCartCount } = useContext(ShopContext);
+
     const [searchResults, setSearchResults] = useState([]);
     const [isSearchVisible, setIsSearchVisible] = useState(false); // State to toggle search visibility
-    const navigate = useNavigate();
 
+    // Handle search input
     // Handle search input
     const handleSearch = (e) => {
         const term = e.target.value;
-        setSearchTerm(term); // Update the searchTerm state
+        setSearch(term); // Update global search state
 
         if (term) {
             const results = products.filter((product) =>
-                product.name.toLowerCase().includes(term.toLowerCase()) // Case-insensitive filtering
+                product.name.toLowerCase().includes(term.toLowerCase())
             );
-            setSearchResults(results); // Set the filtered results
+            setSearchResults(results); // Set filtered results
         } else {
-            setSearchResults([]); // Reset results when search term is empty
+            setSearchResults([]); // Reset results when the search term is empty
         }
     };
 
     // Handle clicking a search result
     const handleResultClick = (productId) => {
-        setSearchResults([]); // Clear search results after click
-        setSearchTerm(""); // Reset the search term
-        navigate(`/product/${productId}`); // Navigate to the product details page
+        setSearchResults([]); // Clear search results
+        setSearch(""); // Reset the search term
+        navigate(`/product/${productId}`); // Navigate to product details page
     };
 
     return (
@@ -44,39 +54,32 @@ const Navbar = () => {
                 </div>
 
                 {/* Search Bar */}
-                <div className="relative w-full sm:w-1/3 md:w-auto">
-                    {/* Search Icon (Visible on mobile only) */}
+                <div className="relative flex items-center w-full sm:w-1/3 md:w-auto px-4">
                     <button
-                        onClick={() => setIsSearchVisible(!isSearchVisible)
-
-                        }
-                        className="sm:hidden absolute left-0 top-1/2 transform -translate-y-1/2"
+                        onClick={() => setIsSearchVisible(!isSearchVisible)}
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2"
                     >
-                        <img
-                            src={searchIcon} // Search icon
-                            alt="Search"
-                            className="w-6 h-6"
-                        />
+                        <img src={searchIcon} alt="Search" className="w-6 h-6"/>
                     </button>
-                    {/* Search Input */}
                     {isSearchVisible && (
                         <input
                             type="text"
                             placeholder="Search..."
-                            value={searchTerm} // Controlled input
-                            onChange={handleSearch} // Update search term
-                            className="w-full px-4 py-2 pl-10 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 sm:ml-2"
+                            value={search}
+                            onChange={handleSearch}
+                            className="w-full px-4 py-2 pl-12 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
                         />
                     )}
-                    {/* Display search results */}
                     {searchResults.length > 0 && (
                         <div
-                            className="absolute z-10 w-full bg-white text-black mt-1 rounded shadow-lg max-h-64 overflow-y-auto">
+                            className="absolute left-0 mt-2 w-full bg-white text-black rounded shadow-lg max-h-64 overflow-y-auto"
+                            style={{ top: '100%' }} // Ensures dropdown is positioned directly below the input
+                        >
                             {searchResults.map((product) => (
                                 <div
-                                    key={product._id} // Use product._id as unique key
+                                    key={product._id}
                                     className="block px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                                    onClick={() => handleResultClick(product._id)} // Navigate to product details
+                                    onClick={() => handleResultClick(product._id)}
                                 >
                                     {product.name}
                                 </div>
@@ -84,6 +87,7 @@ const Navbar = () => {
                         </div>
                     )}
                 </div>
+
 
                 {/* Navigation Links for Desktop */}
                 <ul className="hidden md:flex space-x-6">
